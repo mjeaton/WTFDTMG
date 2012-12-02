@@ -6,9 +6,11 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
 
-    <Grid ShowGridLines="True">
+    <Grid ShowGridLines="True" DataContext="{Binding Path=ActiveItem}">
 
         <Grid.RowDefinitions>
+            <RowDefinition
+                Height="Auto" />
             <RowDefinition
                 Height="Auto" />
             <RowDefinition
@@ -35,7 +37,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock
-            Text="Data Entry" 
+            Text="{Binding Name}" 
             Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6"
             Style="{StaticResource TitleText}"
             />
@@ -115,8 +117,25 @@
             Grid.Row="2"
             Grid.Column="5" />
 
-        <DataGrid
+        <StackPanel
+            Orientation="Horizontal"
             Grid.Row="3"
+            Grid.Column="0"
+            Margin="10"
+            >
+
+            <Button
+                x:Name="Ok"
+                Content="Ok" 
+                Margin="0,0,5,0"
+                />
+            <Button
+                x:Name="Cancel"
+                Content="Cancel" />
+        </StackPanel>
+
+        <DataGrid
+            Grid.Row="4"
             Grid.Column="0"
             Grid.ColumnSpan="6" 
             VerticalAlignment="Stretch"

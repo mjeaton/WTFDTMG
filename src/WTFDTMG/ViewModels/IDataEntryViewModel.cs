@@ -7,6 +7,7 @@ namespace WTFDTMG.ViewModels
 {
     public interface IDataEntryViewModel
     {
-        
+        void Ok();
+        void Cancel();
     }
 }

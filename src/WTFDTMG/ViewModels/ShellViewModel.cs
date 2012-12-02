@@ -3,7 +3,7 @@ using System;
 
 namespace WTFDTMG.ViewModels
 {
-    public class ShellViewModel : IShell, IHaveDisplayName, IHaveActiveItem
+    public class ShellViewModel : IShell, IHaveDisplayName 
     {
         public ShellViewModel(INavigationViewModel navigation)
         {
@@ -18,7 +18,9 @@ namespace WTFDTMG.ViewModels
 
             var entry = IoC.Get<INavigationItem>();
             entry.Name = "Enter items";
-            entry.Content = ViewLocator.LocateForModel(IoC.Get<IDataEntryViewModel>(), null, null);
+            var entryVM = IoC.Get<IDataEntryViewModel>();
+            var entryV = ViewLocator.LocateForModel(entryVM, null, null);
+            entry.Content = entryV;
             Navigation.Items.Add(entry);
 
             var admin = IoC.Get<INavigationItem>();
@@ -39,7 +41,7 @@ namespace WTFDTMG.ViewModels
             set;
         }
 
-        public object ActiveItem
+        public INavigationItem ActiveItem
         {
             get;
             set;
