@@ -1,0 +1,26 @@
+<Window x:Class="WTFDTMG.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Height="300"
+        Width="400"
+        >
+
+	<Grid Background="White" ShowGridLines="True">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition
+                Width="*" />
+            <ColumnDefinition
+                Width="3*" />
+        </Grid.ColumnDefinitions>
+
+        <ListBox
+            Grid.Column="0" 
+            Background="Red"
+            VerticalAlignment="Stretch"
+            ItemsSource="{Binding Navigation.Items}"
+            DisplayMemberPath="Name"
+            />
+
+    </Grid>
+</Window>
