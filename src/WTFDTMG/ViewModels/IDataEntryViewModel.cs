@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace WTFDTMG.ViewModels
 {
-    public interface IDashboardViewModel
+    public interface IDataEntryViewModel
     {
+        
     }
 }

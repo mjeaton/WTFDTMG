@@ -1,26 +1,26 @@
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Input;
+using System.Windows.Controls;
+using System.Windows;
 
 namespace WTFDTMG.ViewModels
 {
     public class NavigationItem : INavigationItem
     {
-        public NavigationItem()
-        {
-
-        }
         public string Name
         {
             get;
             set;
         }
 
-        public ICommand Behavior
+        private UIElement _content;
+        public UIElement Content
         {
-            get;
-            set;
+            get { return _content; }
+            set { _content = value; }
         }
     }
 }

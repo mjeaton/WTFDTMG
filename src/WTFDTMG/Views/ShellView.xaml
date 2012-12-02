@@ -3,23 +3,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Height="300"
         Width="400"
+        Title="{Binding DisplayName}"
         >
 
 	<Grid Background="White" ShowGridLines="True">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition
-                Width="*" />
+                Width=".5*" MinWidth="150"/>
             <ColumnDefinition
                 Width="3*" />
         </Grid.ColumnDefinitions>
 
         <ListBox
             Grid.Column="0" 
-            Background="Red"
             VerticalAlignment="Stretch"
             ItemsSource="{Binding Navigation.Items}"
+            SelectedItem="{Binding ActiveItem, Mode=TwoWay}"
             DisplayMemberPath="Name"
+            Margin="0,0,5,0"
+            />
+
+        <ContentControl
+            Grid.Column="1"
+            VerticalAlignment="Stretch"
+            Content="{Binding ActiveItem.Content}"
             />
 
     </Grid>

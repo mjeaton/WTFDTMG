@@ -12,6 +12,19 @@
                         x:Key="bootstrapper" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
+            <Style
+                TargetType="TextBlock"
+                x:Key="TitleText">
+                <Setter
+                    Property="FontSize"
+                    Value="24" />
+                <Setter
+                    Property="HorizontalAlignment"
+                    Value="Center" />
+                <Setter
+                    Property="Foreground"
+                    Value="Black" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

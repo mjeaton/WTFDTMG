@@ -79,11 +79,33 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Views\ShellView.xaml">
-      <Generator>MSBuild:Compile</Generator>
+    <Compile Include="ViewModels\DashboardViewModel.cs" />
+    <Compile Include="ViewModels\IAdministrationViewModel.cs" />
+    <Compile Include="ViewModels\IAdministrationViewModelImplementer.cs" />
+    <Compile Include="ViewModels\IDataEntryViewModel.cs" />
+    <Compile Include="ViewModels\DataEntryViewModel.cs" />
+    <Compile Include="Views\AdministrationView.xaml.cs">
+      <DependentUpon>AdministrationView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DashboardView.xaml.cs">
+      <DependentUpon>DashboardView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DataEntryView.xaml.cs">
+      <DependentUpon>DataEntryView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AdministrationView.xaml">
       <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Views\DashboardView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\DataEntryView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ShellView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -95,17 +117,13 @@
     <Compile Include="ViewModels\IContent.cs" />
     <Compile Include="ViewModels\IDashboardViewModel.cs" />
     <Compile Include="ViewModels\INavigationItem.cs" />
-    <Compile Include="ViewModels\INavigationItemImplementer.cs" />
+    <Compile Include="ViewModels\NavigationItem.cs" />
     <Compile Include="ViewModels\INavigationViewModel.cs" />
     <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\IShell.cs" />
-    <Compile Include="Modules\ViewModedModule.cs" />
+    <Compile Include="Modules\ViewModelModule.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Modules\StandardModule.cs" />
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
