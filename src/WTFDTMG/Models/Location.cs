@@ -1,16 +1,13 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Massive;
 
 namespace WTFDTMG.Models
 {
-    public class Account : DynamicModel, IAccount
+    public class Location : DynamicModel, ILocation
     {
-        public Account() : base("connString", "account", "id")
-        {
-
-        }
+        public Location() : base("connString", "Location", "Id") { }
 
         public string Name { get; set; }
     }

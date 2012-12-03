@@ -76,6 +76,11 @@
     </ApplicationDefinition>
     <Compile Include="Massive.cs" />
     <Compile Include="Models\Account.cs" />
+    <Compile Include="Models\IAccount.cs" />
+    <Compile Include="Models\ILocation.cs" />
+    <Compile Include="Models\IPurchase.cs" />
+    <Compile Include="Models\Location.cs" />
+    <Compile Include="Models\Purchase.cs" />
     <Compile Include="ViewModels\DashboardViewModel.cs" />
     <Compile Include="ViewModels\IAdministrationViewModel.cs" />
     <Compile Include="ViewModels\AdministrationViewModel.cs" />

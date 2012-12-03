@@ -17,6 +17,11 @@ namespace WTFDTMG.ViewModels
 
             var account = new Account();
             Accounts = new ObservableCollection<IAccount>(Impromptu.AllActLike<IAccount>(account.All(), typeof(IAccount)));
+
+            var location = new Location();
+            Locations = new ObservableCollection<ILocation>(Impromptu.AllActLike<ILocation>(location.All(), typeof(ILocation)));
+
+            Date = DateTime.Today;
         }
 
         private DateTime _Date;
@@ -33,6 +38,7 @@ namespace WTFDTMG.ViewModels
         public decimal Amount { get; set; }
 
         public ObservableCollection<IAccount> Accounts { get; set; }
+        public ObservableCollection<ILocation> Locations { get; set; }
 
         private IAccount _selectedAccount;
         public IAccount SelectedAccount
@@ -45,6 +51,17 @@ namespace WTFDTMG.ViewModels
             }
         }
 
+        private ILocation _selectedLocation;
+        public ILocation SelectedLocation
+        {
+            get { return _selectedLocation; }
+            set
+            {
+                _selectedLocation = value;
+                NotifyOfPropertyChange(() => SelectedLocation);
+            }
+        }
+
         public void Ok()
         {
             MessageBox.Show("ok");
@@ -52,7 +69,10 @@ namespace WTFDTMG.ViewModels
 
         public bool CanOk
         {
-            get { return false; }
+            get 
+            { 
+                return false; 
+            }
         }
 
         public void Cancel()
