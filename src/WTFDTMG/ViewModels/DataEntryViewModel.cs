@@ -1,10 +1,11 @@
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 using WTFDTMG.Models;
+using ImpromptuInterface;
+using System.Collections.ObjectModel;
 
 namespace WTFDTMG.ViewModels
 {
@@ -14,10 +15,8 @@ namespace WTFDTMG.ViewModels
         {
             DisplayName = "Enter Items";
 
-            Accounts = new ObservableCollection<Account>();
-            Accounts.Add(new Account() { Name = "Checking" });
-            Accounts.Add(new Account() { Name = "Savings" });
-            Accounts.Add(new Account() { Name = "Amex" });
+            var account = new Account();
+            Accounts = new ObservableCollection<IAccount>(Impromptu.AllActLike<IAccount>(account.All(), typeof(IAccount)));
         }
 
         private DateTime _Date;
@@ -33,10 +32,10 @@ namespace WTFDTMG.ViewModels
 
         public decimal Amount { get; set; }
 
-        public ObservableCollection<Account> Accounts { get; set; }
+        public ObservableCollection<IAccount> Accounts { get; set; }
 
-        private Account _selectedAccount;
-        public Account SelectedAccount
+        private IAccount _selectedAccount;
+        public IAccount SelectedAccount
         {
             get { return _selectedAccount; }
             set

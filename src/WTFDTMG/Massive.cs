@@ -7,6 +7,7 @@ using System.Dynamic;
 using System.Linq;
 using System.Text;
 using System.Configuration;
+using System.Collections;
 
 namespace Massive {
     public static class ObjectExtensions {
