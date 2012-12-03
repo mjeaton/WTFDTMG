@@ -6,10 +6,11 @@ using System.Windows;
 using WTFDTMG.Models;
 using ImpromptuInterface;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace WTFDTMG.ViewModels
 {
-    public class DataEntryViewModel : Screen, IDataEntryViewModel
+    public class DataEntryViewModel : Screen, IDataEntryViewModel, IDataErrorInfo
     {
         public DataEntryViewModel()
         {
@@ -62,6 +63,8 @@ namespace WTFDTMG.ViewModels
             }
         }
 
+        public string Reason { get; set; }
+
         public void Ok()
         {
             MessageBox.Show("ok");
@@ -78,6 +81,34 @@ namespace WTFDTMG.ViewModels
         public void Cancel()
         {
             MessageBox.Show("Cancel");
+        }
+
+        public string Error
+        {
+            get { throw new NotImplementedException(); }
+        }
+
+        public string this[string columnName]
+        {
+            get 
+            {
+                string returnVal = string.Empty;
+                if (columnName == "Date")
+                {
+                    if (Date <= DateTime.MinValue || Date >= DateTime.MaxValue)
+                    {
+                        returnVal = "Please enter a value date.";
+                    }
+                }
+                else if (columnName == "Reason")
+                {
+                    if (string.IsNullOrEmpty(Reason))
+                    {
+                        returnVal = "Please enter a reason / description of the purchase.";
+                    }
+                }
+                return returnVal;
+            }
         }
     }
 }
