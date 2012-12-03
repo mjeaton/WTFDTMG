@@ -1,12 +1,12 @@
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows;
 
 namespace WTFDTMG.ViewModels
 {
-    public class DataEntryViewModel : IDataEntryViewModel
+    public class DataEntryViewModel : Screen, IDataEntryViewModel
     {
         public void Ok()
         {

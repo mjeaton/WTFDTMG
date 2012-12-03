@@ -1,50 +1,55 @@
 using Caliburn.Micro;
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace WTFDTMG.ViewModels
 {
-    public class ShellViewModel : IShell, IHaveDisplayName 
+    public class ShellViewModel : Conductor<object>, IShell, IHandle<string>
     {
-        public ShellViewModel(INavigationViewModel navigation)
+        private readonly IEventAggregator _eventAggregator;
+        public ShellViewModel(IEventAggregator eventAggregator)
         {
+            _eventAggregator = eventAggregator;
+
             DisplayName = "WTFDTMG?";
 
-            Navigation = navigation;
+            var items = new List<string>();
+            items.Add("Dashboard");
+            items.Add("Enter items");
+            items.Add("Administration");
 
-            var dashboard = IoC.Get<INavigationItem>();
-            dashboard.Name = "Dashboard";
-            dashboard.Content = ViewLocator.LocateForModel(IoC.Get<IDashboardViewModel>(), null, null);
-            Navigation.Items.Add(dashboard);
+            _navigationItems = (CollectionView)CollectionViewSource.GetDefaultView(items);
+            NavigationItems.CurrentChanged += delegate
+            {
+                eventAggregator.Publish(NavigationItems.CurrentItem.ToString());
+            };
 
-            var entry = IoC.Get<INavigationItem>();
-            entry.Name = "Enter items";
-            var entryVM = IoC.Get<IDataEntryViewModel>();
-            var entryV = ViewLocator.LocateForModel(entryVM, null, null);
-            entry.Content = entryV;
-            Navigation.Items.Add(entry);
-
-            var admin = IoC.Get<INavigationItem>();
-            admin.Name = "Administration";
-            admin.Content = ViewLocator.LocateForModel(IoC.Get<IAdministrationViewModel>(), null, null);
-            Navigation.Items.Add(admin);
+            _eventAggregator.Subscribe(this);
         }
 
-        public INavigationViewModel Navigation
+        private ICollectionView _navigationItems;
+        public ICollectionView NavigationItems
         {
-            get;
-            set;
+            get { return _navigationItems; }
         }
 
-        public string DisplayName
+        public void Handle(string message)
         {
-            get;
-            set;
-        }
-
-        public INavigationItem ActiveItem
-        {
-            get;
-            set;
+            switch (message.ToLower())
+            {
+                case "dashboard":
+                    ActivateItem(IoC.Get<IDashboardViewModel>());
+                    break;
+                case "enter items":
+                    ActivateItem(IoC.Get<IDataEntryViewModel>());
+                    break;
+                case "administration":
+                    ActivateItem(IoC.Get<IAdministrationViewModel>());
+                    break;
+            }
+            Console.WriteLine(message);
         }
     }
 }

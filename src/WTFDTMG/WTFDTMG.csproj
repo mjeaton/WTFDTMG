@@ -115,10 +115,6 @@
     </Compile>
     <Compile Include="AppBootstrapper.cs" />
     <Compile Include="ViewModels\IDashboardViewModel.cs" />
-    <Compile Include="ViewModels\INavigationItem.cs" />
-    <Compile Include="ViewModels\NavigationItem.cs" />
-    <Compile Include="ViewModels\INavigationViewModel.cs" />
-    <Compile Include="ViewModels\NavigationViewModel.cs" />
     <Compile Include="ViewModels\IShell.cs" />
     <Compile Include="Modules\ViewModelModule.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />

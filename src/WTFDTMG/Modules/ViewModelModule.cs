@@ -11,8 +11,6 @@ namespace WTFDTMG.Modules
         public override void Load()
         {
             Bind<IShell>().To<ShellViewModel>();
-            Bind<INavigationViewModel>().To<NavigationViewModel>();
-            Bind<INavigationItem>().To<NavigationItem>();
             Bind<IDashboardViewModel>().To<DashboardViewModel>();
             Bind<IDataEntryViewModel>().To<DataEntryViewModel>();
             Bind<IAdministrationViewModel>().To<AdministrationViewModel>();
