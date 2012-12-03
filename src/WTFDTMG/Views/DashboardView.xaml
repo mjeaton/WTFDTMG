@@ -24,7 +24,7 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock
-            Text="Dashboard"
+            x:Name="DisplayName"
             Style="{StaticResource TitleText}"
             Grid.Row="0"
             Grid.Column="0"

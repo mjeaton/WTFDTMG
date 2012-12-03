@@ -5,11 +5,11 @@ using System.Linq;
 
 namespace WTFDTMG.ViewModels
 {
-    public class DashboardViewModel : Screen, IDashboardViewModel
+    public class AdministrationViewModel : Screen, IAdministrationViewModel
     {
-        public DashboardViewModel()
+        public AdministrationViewModel()
         {
-            DisplayName = "Dashboard";
+            DisplayName = "Administration";
         }
     }
 }
