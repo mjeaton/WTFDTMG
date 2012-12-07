@@ -7,6 +7,7 @@ using WTFDTMG.Models;
 using ImpromptuInterface;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Text;
 
 namespace WTFDTMG.ViewModels
 {
@@ -22,9 +23,14 @@ namespace WTFDTMG.ViewModels
             var location = new Location();
             Locations = new ObservableCollection<ILocation>(Impromptu.AllActLike<ILocation>(location.All(), typeof(ILocation)));
 
+            Purchases = new ObservableCollection<Purchase>();
+
             Date = DateTime.Today;
         }
 
+        public ObservableCollection<Purchase> Purchases { get; set; }
+
+        private string _Reason;
         private DateTime _Date;
         public DateTime Date
         {
@@ -33,6 +39,7 @@ namespace WTFDTMG.ViewModels
             {
                 _Date = value;
                 NotifyOfPropertyChange(() => Date);
+                NotifyOfPropertyChange(() => HasErrors);
             }
         }
 
@@ -63,7 +70,16 @@ namespace WTFDTMG.ViewModels
             }
         }
 
-        public string Reason { get; set; }
+        public string Reason
+        {
+            get { return _Reason; }
+            set
+            {
+                _Reason = value;
+                NotifyOfPropertyChange(() => Reason);
+                NotifyOfPropertyChange(() => HasErrors);
+            }
+        }
 
         public void Ok()
         {
@@ -72,9 +88,9 @@ namespace WTFDTMG.ViewModels
 
         public bool CanOk
         {
-            get 
-            { 
-                return false; 
+            get
+            {
+                return !HasErrors;
             }
         }
 
@@ -90,7 +106,7 @@ namespace WTFDTMG.ViewModels
 
         public string this[string columnName]
         {
-            get 
+            get
             {
                 string returnVal = string.Empty;
                 if (columnName == "Date")
@@ -107,8 +123,63 @@ namespace WTFDTMG.ViewModels
                         returnVal = "Please enter a reason / description of the purchase.";
                     }
                 }
+
+                if (!string.IsNullOrEmpty(returnVal))
+                {
+                    AddError(columnName, returnVal);
+                }
+                else {
+                    RemoveError(columnName) ;
+                }
+
+                NotifyOfPropertyChange(() => HasErrors);
+                NotifyOfPropertyChange(() => CanOk);
+
                 return returnVal;
             }
+        }
+
+        private Dictionary<string, string> _errors = new Dictionary<string, string>();
+        public bool HasErrors
+        {
+            get { return _errors.Count > 0; }
+        }
+
+        public string ValidationErrors
+        {
+            get 
+            {
+                var sb = new StringBuilder();
+                foreach (var s in _errors.Values) 
+                {
+                    sb.AppendLine(s);
+                }
+
+                return sb.ToString();
+            }
+        }
+
+
+        public void AddError(string propertyName, string error)
+        {
+            if ((_errors.ContainsKey(propertyName) == false))
+            {
+                _errors.Add(propertyName, error);
+            }
+
+            NotifyOfPropertyChange(() => HasErrors);
+            NotifyOfPropertyChange(() => ValidationErrors);
+        }
+
+        public void RemoveError(string propertyName)
+        {
+            if ((_errors.ContainsKey(propertyName)))
+            {
+                _errors.Remove(propertyName);
+            }
+
+            NotifyOfPropertyChange(() => HasErrors);
+            NotifyOfPropertyChange(() => ValidationErrors);
         }
     }
 }

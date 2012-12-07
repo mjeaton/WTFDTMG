@@ -39,7 +39,6 @@
         <TextBlock
             x:Name="DisplayName"
             Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6"
-            Style="{StaticResource TitleText}"
             />
 
         <TextBlock
@@ -50,7 +49,9 @@
         <DatePicker
             x:Name="Date"
             Grid.Row="2"
-            Grid.Column="0" />
+            Grid.Column="0" 
+            VerticalAlignment="Top"
+            />
 
         <TextBlock
             Text="Amount"
@@ -64,6 +65,7 @@
             Width="100"
             HorizontalAlignment="Left"
             MaxLength="7"
+            VerticalAlignment="Top"
             />
 
         <TextBlock
@@ -138,11 +140,39 @@
         </StackPanel>
 
         <DataGrid
+            x:Name="Purchases"
+            AutoGenerateColumns="False"
             Grid.Row="4"
             Grid.Column="0"
-            Grid.ColumnSpan="6" 
+            Grid.ColumnSpan="6"
             VerticalAlignment="Stretch"
-            />
+            IsReadOnly="True"
+            CanUserAddRows="False"
+            CanUserDeleteRows="False"
+            >
+
+            <DataGrid.Columns>
+                <DataGridTextColumn
+                    Binding="{Binding Date}"
+                    Header="Date" />
+                <DataGridTextColumn
+                    Binding="{Binding Amount}"
+                    Header="Amount" />
+                <DataGridTextColumn
+                    Binding="{Binding Location}"
+                    Header="Amount" />
+                <DataGridTextColumn
+                    Binding="{Binding Account}"
+                    Header="Amount" />
+                <DataGridTextColumn
+                    Binding="{Binding Reason}"
+                    Header="Reason" />
+                <DataGridCheckBoxColumn
+                    Binding="{Binding ForBusiness}"
+                    Header="For Business?" />
+            </DataGrid.Columns>
+            
+        </DataGrid>
 
     </Grid>
 </UserControl>

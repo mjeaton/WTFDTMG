@@ -25,7 +25,6 @@
 
         <TextBlock
             x:Name="DisplayName"
-            Style="{StaticResource TitleText}"
             Grid.Row="0"
             Grid.Column="0"
             Grid.ColumnSpan="2" />
