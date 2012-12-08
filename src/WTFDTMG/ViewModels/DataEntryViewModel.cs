@@ -81,9 +81,20 @@ namespace WTFDTMG.ViewModels
             }
         }
 
+        private bool _forBusiness;
+        public bool ForBusiness
+        {
+            get { return _forBusiness; }
+            set
+            {
+                _forBusiness = value;
+                NotifyOfPropertyChange(() => ForBusiness);
+            }
+        }
+
         public void Ok()
         {
-            MessageBox.Show("ok");
+            MessageBox.Show("Ok");
         }
 
         public bool CanOk
@@ -112,9 +123,20 @@ namespace WTFDTMG.ViewModels
                 if (columnName == "Date")
                 {
                     if (Date <= DateTime.MinValue || Date >= DateTime.MaxValue)
-                    {
-                        returnVal = "Please enter a value date.";
-                    }
+                        returnVal = "Please enter a valid date.";
+                    else if (Date >= DateTime.Today)
+                        returnVal = "You can't enter future dates.";
+
+                }
+                else if (columnName == "SelectedAccount")
+                {
+                    if (SelectedAccount == null)
+                        returnVal = "Please select an account.";
+                }
+                else if (columnName == "SelectedLocation")
+                {
+                    if (SelectedLocation == null)
+                        returnVal = "Please select a location.";
                 }
                 else if (columnName == "Reason")
                 {

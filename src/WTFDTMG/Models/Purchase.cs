@@ -12,9 +12,15 @@ namespace WTFDTMG.Models
         public int Id { get; set; }
         public DateTime PurchaseDate { get; set; }
         public decimal Amount { get; set; }
-        public Account Account { get; set; }
-        public Location Location { get; set; }
+        public IAccount Account { get; set; }
+        public ILocation Location { get; set; }
         public string Reason { get; set; }
         public bool ForBusiness { get; set; }
+
+        public override void Validate(dynamic item)
+        {
+            ValidatesPresenceOf(PurchaseDate);
+            ValidateIsCurrency(Amount);
+        }
     }
 }

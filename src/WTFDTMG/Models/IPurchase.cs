@@ -9,8 +9,8 @@ namespace WTFDTMG.Models
         int Id { get; set; }
         DateTime PurchaseDate { get; set; }
         decimal Amount { get; set; }
-        Account Account { get; set; }
-        Location Location { get; set; }
+        IAccount Account { get; set; }
+        ILocation Location { get; set; }
         string Reason { get; set; }
         bool ForBusiness { get; set; }
     }

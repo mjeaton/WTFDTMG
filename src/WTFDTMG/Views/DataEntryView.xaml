@@ -39,6 +39,7 @@
         <TextBlock
             x:Name="DisplayName"
             Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6"
+            Style="{StaticResource headerStyle}"
             />
 
         <TextBlock
@@ -133,10 +134,11 @@
                 x:Name="Ok"
                 Content="Ok" 
                 Margin="0,0,5,0"
-                />
+                Template="{DynamicResource ButtonBaseControlTemplate1}" />
             <Button
                 x:Name="Cancel"
                 Content="Cancel" />
+
         </StackPanel>
 
         <DataGrid

@@ -25,9 +25,11 @@
 
         <TextBlock
             x:Name="DisplayName"
+            Style="{StaticResource headerStyle}"
             Grid.Row="0"
             Grid.Column="0"
-            Grid.ColumnSpan="2" />
+            Grid.ColumnSpan="2" 
+            />
 
     </Grid>
 </UserControl>
